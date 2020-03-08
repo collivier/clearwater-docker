@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ralf
@@ -14,7 +14,7 @@ spec:
         snmp: enabled
     spec:
       containers:
-      - image: "{{IMAGE_PATH}}/ralf:{{IMAGE_TAG}}"
+      - image: "{{IMAGE_PATH}}-ralf:{{IMAGE_TAG}}"
         imagePullPolicy: Always
         name: ralf
         ports:

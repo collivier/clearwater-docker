@@ -1,9 +1,12 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: astaire
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      service: astaire
   template:
     metadata:
       labels:
@@ -11,7 +14,7 @@ spec:
     spec:
       terminationGracePeriodSeconds: 120
       containers:
-      - image: "{{IMAGE_PATH}}/astaire:{{IMAGE_TAG}}"
+      - image: "{{IMAGE_PATH}}-astaire:{{IMAGE_TAG}}"
         imagePullPolicy: Always
         name: astaire
         ports:

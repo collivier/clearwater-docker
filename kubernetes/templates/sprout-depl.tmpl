@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: sprout
@@ -14,7 +14,7 @@ spec:
         snmp: enabled
     spec:
       containers:
-      - image: "{{IMAGE_PATH}}/sprout:{{IMAGE_TAG}}"
+      - image: "{{IMAGE_PATH}}-sprout:{{IMAGE_TAG}}"
         imagePullPolicy: Always
         name: sprout
         ports:

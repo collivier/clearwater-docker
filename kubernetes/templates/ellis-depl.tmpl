@@ -1,16 +1,19 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ellis
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      service: ellis
   template:
     metadata:
       labels:
         service: ellis
     spec:
       containers:
-      - image: "{{IMAGE_PATH}}/ellis:{{IMAGE_TAG}}"
+      - image: "{{IMAGE_PATH}}-ellis:{{IMAGE_TAG}}"
         imagePullPolicy: Always
         name: ellis
         ports:

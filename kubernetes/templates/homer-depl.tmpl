@@ -1,16 +1,19 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: homer
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      service: homer
   template:
     metadata:
       labels:
         service: homer
     spec:
       containers:
-      - image: "{{IMAGE_PATH}}/homer:{{IMAGE_TAG}}"
+      - image: "{{IMAGE_PATH}}-homer:{{IMAGE_TAG}}"
         imagePullPolicy: Always
         name: homer
         ports:
