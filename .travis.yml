@@ -1,0 +1,23 @@
+---
+sudo: required
+services: docker
+language: generic
+dist: xenial
+
+before_script:
+  - sudo -E docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
+
+jobs:
+  include:
+    - stage: build and publish Cleawater Docker images
+      script: >
+        for i in base astaire cassandra chronos bono ellis homer homestead homestead-prov ralf sprout; do
+          sudo docker build -t clearwater/$i $i
+          sudo docker tag clearwater/$i:latest ${DOCKER_USERNAME}/clearwater-$i:latest
+          sudo docker push ${DOCKER_USERNAME}/clearwater-$i:latest
+        done
+    - stage: build and publish Clearwater live-test Docker image
+      script: >
+        (cd live-test &&
+          sudo docker build -t ${DOCKER_USERNAME}/clearwater-live-test . &&
+          sudo docker push ${DOCKER_USERNAME}/clearwater-live-test)
