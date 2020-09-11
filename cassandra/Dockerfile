@@ -7,5 +7,6 @@ RUN sed -e 's/-c cassandra/-c root/g' -i /etc/init.d/cassandra
 COPY start_cassandra.sh /usr/bin/start_cassandra.sh
 COPY cassandra.supervisord.conf /etc/supervisor/conf.d/cassandra.conf
 COPY clearwater-group.supervisord.conf /etc/supervisor/conf.d/clearwater-group.conf
+RUN sed -i "s/rpc_address: ::0/rpc_address: 0.0.0.0/" /usr/share/clearwater/cassandra/cassandra.yaml.template
 
 EXPOSE 9160 7001 7001 9042
