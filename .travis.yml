@@ -13,11 +13,11 @@ jobs:
       script: >
         for i in base astaire cassandra chronos bono ellis homer homestead homestead-prov ralf sprout; do
           sudo docker build -t clearwater/$i $i
-          sudo docker tag clearwater/$i:latest ${DOCKER_USERNAME}/clearwater-$i:latest
-          sudo docker push ${DOCKER_USERNAME}/clearwater-$i:latest
+          sudo docker tag clearwater/$i ${DOCKER_USERNAME}/clearwater-$i:hunter
+          sudo docker push ${DOCKER_USERNAME}/clearwater-$i:hunter
         done
     - stage: build and publish Clearwater live-test Docker image
       script: >
         (cd live-test &&
-          sudo docker build -t ${DOCKER_USERNAME}/clearwater-live-test . &&
-          sudo docker push ${DOCKER_USERNAME}/clearwater-live-test)
+          sudo docker build -t ${DOCKER_USERNAME}/clearwater-live-test:hunter . &&
+          sudo docker push ${DOCKER_USERNAME}/clearwater-live-test:hunter)
