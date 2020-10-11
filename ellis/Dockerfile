@@ -14,5 +14,6 @@ COPY mysql.supervisord.conf /etc/supervisor/conf.d/mysql.conf
 COPY initsql.supervisord.conf /etc/supervisor/conf.d/initsql.conf
 COPY nginx.supervisord.conf /etc/supervisor/conf.d/nginx.conf
 COPY clearwater-group.supervisord.conf /etc/supervisor/conf.d/clearwater-group.conf
+RUN chmod 755 /usr/share/clearwater/ellis/create_numbers.sh
 
 EXPOSE 80
